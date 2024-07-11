@@ -22,7 +22,7 @@ const TeamDetails = () => {
   useEffect(() => {
     const fetchTeam = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/team/userTeam/${teamId}`);
+        const response = await axios.get(`https://collab-app-backend.onrender.com/team/userTeam/${teamId}`);
         setTeam(response.data);
       } catch (error) {
         console.error('Error fetching team:', error);
@@ -55,7 +55,7 @@ const TeamDetails = () => {
   const handleDeleteTeam = async () => {
     const userId = Cookies.get('userId');
     try {
-      await axios.delete(`http://localhost:8000/team/${teamId}`, {
+      await axios.delete(`https://collab-app-backend.onrender.com/team/${teamId}`, {
         data: { userId }
       });
       navigate('/teams');
@@ -67,7 +67,7 @@ const TeamDetails = () => {
   const handleEditTeam = async () => {
     const userId = Cookies.get('userId');
     try {
-      const response = await axios.put(`http://localhost:8000/team/${teamId}`, {
+      const response = await axios.put(`https://collab-app-backend.onrender.com/team/${teamId}`, {
         userId,
         teamName: newTeamName,
         addMembers: selectedMembers.map(member => member._id),
@@ -84,7 +84,7 @@ const TeamDetails = () => {
   const handleRemoveMember = async (memberId) => {
     const userId = Cookies.get('userId');
     try {
-      const response = await axios.put(`http://localhost:8000/team/${teamId}`, {
+      const response = await axios.put(`https://collab-app-backend.onrender.com/team/${teamId}`, {
         userId,
         addMembers: [],
         removeMembers: [memberId]

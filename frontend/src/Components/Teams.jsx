@@ -20,7 +20,7 @@ const Teams = () => {
         const fetchTeams = async () => {
             const userId = Cookies.get('userId')
             try {
-                const response = await axios.get(`http://localhost:8000/userTeams/${userId}`);
+                const response = await axios.get(`https://collab-app-backend.onrender.com/userTeams/${userId}`);
                 setTeams(response.data);
                 setLoading(false); // Set loading to false after data is fetched
             } catch (error) {
@@ -47,7 +47,7 @@ const Teams = () => {
 
     const handleCreateTeam = async () => {
         try {
-            const response = await axios.post('http://localhost:8000/team', {
+            const response = await axios.post('https://collab-app-backend.onrender.com/team', {
                 teamName: newTeamName,
                 members: members.map(member => member._id),
                 userId: userId

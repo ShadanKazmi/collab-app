@@ -10,7 +10,7 @@ const AllTasks = () => {
     const userId = Cookies.get('userId');
     const fetchTasks = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/files/tasks/${userId}`);
+        const response = await axios.get(`https://collab-app-backend.onrender.com/files/tasks/${userId}`);
         setTasks(response.data.tasks);
       } catch (error) {
         console.error('Error fetching tasks:', error);

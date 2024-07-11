@@ -12,7 +12,7 @@ const SearchBar = ({ onUserSelect }) => {
         setValue(data.value);
 
         try {
-            const response = await axios.get(`http://localhost:8000/userAuth/search?query=${data.value}`);
+            const response = await axios.get(`https://collab-app-backend.onrender.com/userAuth/search?query=${data.value}`);
             const formattedResults = response.data.map(user => ({
                 title: `${user.firstName} ${user.lastName}`,
                 description: user.email,

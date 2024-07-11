@@ -23,7 +23,7 @@ const TeamTasks = () => {
 
   const fetchTasks = async () => {
     try {
-      const response = await axios.get(`http://localhost:8000/files/teamtasks/${teamId}`);
+      const response = await axios.get(`https://collab-app-backend.onrender.com/files/teamtasks/${teamId}`);
       setTasks(response.data.uploadedContents);
     } catch (error) {
       console.error('Error fetching tasks:', error);
@@ -40,7 +40,7 @@ const TeamTasks = () => {
       if (file) {
         formData.append('taskContent', file);
       }
-      const response = await axios.post(`http://localhost:8000/files/${teamId}`, formData, {
+      const response = await axios.post(`https://collab-app-backend.onrender.com/files/${teamId}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -148,7 +148,7 @@ const TeamTasks = () => {
             <p>Details: {selectedTask?.taskDetail}</p>
             {selectedTask?.taskContent && (
               <p>
-                Task Content: <a onClick={() => {handleFileDownload(`http://localhost:8000/files${selectedTask.taskContent}`)}}>Download File</a>
+                Task Content: <a onClick={() => {handleFileDownload(`https://collab-app-backend.onrender.com/files${selectedTask.taskContent}`)}}>Download File</a>
               </p>
             )}
             <p>Created by: {selectedTask?.createdBy.firstName} {selectedTask?.createdBy.lastName}</p>

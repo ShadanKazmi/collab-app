@@ -20,7 +20,7 @@
 
 //     const fetchUserDetails = async (userId) => {
 //         try {
-//             const response = await axios.get(`http://localhost:8000/userAuth/${userId}`);
+//             const response = await axios.get(`https://collab-app-backend.onrender.com/userAuth/${userId}`);
 //             const userData = response.data;
 //             setUser(userData);
             
@@ -82,7 +82,7 @@ export const AuthProvider = (props) => {
 
     const fetchUserDetails = async (userId) => {
         try {
-            const response = await axios.get(`http://localhost:8000/userAuth/${userId}`);
+            const response = await axios.get(`https://collab-app-backend.onrender.com/userAuth/${userId}`);
             const userData = response.data;
             setUser(userData);
         } catch (error) {

@@ -22,7 +22,7 @@ const NavBar = () => {
                     console.error('User ID not found in cookies.');
                     return null;
                 }
-                const response = await axios.get(`http://localhost:8000/userAuth/${userId}`);
+                const response = await axios.get(`https://collab-app-backend.onrender.com/userAuth/${userId}`);
                 setCurrentUser(response.data); 
             } catch (error) {
                 console.error('Error fetching user:', error);

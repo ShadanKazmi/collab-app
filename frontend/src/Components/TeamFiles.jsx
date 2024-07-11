@@ -13,7 +13,7 @@ const TeamFiles = () => {
   useEffect(() => {
     const fetchFiles = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/files/${teamId}`);
+        const response = await axios.get(`https://collab-app-backend.onrender.com/files/${teamId}`);
         setTeamFiles(response.data.uploadedContents); // Assuming response structure matches provided example
       } catch (error) {
         console.error('Error fetching team files:', error);
@@ -44,7 +44,7 @@ const TeamFiles = () => {
             <List.Item key={file._id}>
               <List.Icon name='file' />
               <List.Content>
-                <List.Header as='a' onClick = {() => {handleFileDownload(`http://localhost:8000/files${file.msgContent}`)}} target='_blank'>{file.msgContent.split('/').pop()}</List.Header>
+                <List.Header as='a' onClick = {() => {handleFileDownload(`https://collab-app-backend.onrender.com/files${file.msgContent}`)}} target='_blank'>{file.msgContent.split('/').pop()}</List.Header>
                 {/* Assuming msgContent contains the file URL */}
               </List.Content>
             </List.Item>

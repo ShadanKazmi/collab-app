@@ -11,7 +11,7 @@
 //         const userId = localStorage.getItem('userId'); 
 //         const fetchTeams = async () => {
 //             try {
-//                 const response = await axios.get(`http://localhost:8000/team/userTeams/${userId}`);
+//                 const response = await axios.get(`https://collab-app-backend.onrender.com/team/userTeams/${userId}`);
 //                 setTeams(response.data);
 //             } catch (error) {
 //                 console.error('Error fetching teams:', error);
@@ -42,7 +42,7 @@ export const TeamProvider = (props) => {
 
         const fetchTeams = async () => {
             try {
-                const response = await axios.get(`http://localhost:8000/team/userTeams/${userId}`);
+                const response = await axios.get(`https://collab-app-backend.onrender.com/team/userTeams/${userId}`);
                 setTeams(response.data);
             } catch (error) {
                 console.error('Error fetching teams:', error);

@@ -17,7 +17,7 @@ const UserProfile = () => {
                     <Grid columns={3} stackable>
                         <Grid.Column width={10} className="flex justify-center">
                             <Image
-                                src={`http://localhost:8000/userAuth${user.profileImageURL}`}
+                                src={`https://collab-app-backend.onrender.com/userAuth${user.profileImageURL}`}
                                 size="medium"
                                 circular
                             />

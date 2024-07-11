@@ -28,7 +28,7 @@ const UserDetails = () => {
 
   const fetchUserDetails = async (userId) => {
     try {
-      const response = await axios.get(`http://localhost:8000/userAuth/${userId}`);
+      const response = await axios.get(`https://collab-app-backend.onrender.com/userAuth/${userId}`);
       setUserDetails(response.data);
       setFormData({
         firstName: response.data.firstName,
@@ -63,7 +63,7 @@ const UserDetails = () => {
     }
 
     try {
-      const response = await axios.put(`http://localhost:8000/userAuth/update/${userId}`, form, {
+      const response = await axios.put(`https://collab-app-backend.onrender.com/userAuth/update/${userId}`, form, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
       setUserDetails(response.data);
@@ -80,7 +80,7 @@ const UserDetails = () => {
   const confirmDelete = async () => {
     const userId = Cookies.get('userId');
     try {
-      await axios.delete(`http://localhost:8000/userAuth/delete/${userId}`);
+      await axios.delete(`https://collab-app-backend.onrender.com/userAuth/delete/${userId}`);
       logout();
       navigate('/auth');
     } catch (error) {
@@ -102,7 +102,7 @@ const UserDetails = () => {
         <Grid.Row>
           <Grid.Column width={6}>
             <Image
-              src={`http://localhost:8000/userAuth${userDetails.profileImageURL}` || 'https://react.semantic-ui.com/images/avatar/large/elliot.jpg'}
+              src={`https://collab-app-backend.onrender.com/userAuth${userDetails.profileImageURL}` || 'https://react.semantic-ui.com/images/avatar/large/elliot.jpg'}
               size='medium'
               circular
               centered

@@ -5,7 +5,7 @@ import axios from 'axios';
 import io from 'socket.io-client';
 import Cookies from 'js-cookie';
 
-const socket = io('http://localhost:8000');
+const socket = io('https://collab-app-backend.onrender.com');
 
 const Chat = () => {
   const { userId } = useParams();
@@ -15,10 +15,9 @@ const Chat = () => {
   const [filePreview, setFilePreview] = useState(null);
 
   useEffect(() => {
-    // Fetch initial chat messages
     const fetchMessages = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/chat/${Cookies.get('userId')}/${userId}`);
+        const response = await axios.get(`https://collab-app-backend.onrender.com/chat/${Cookies.get('userId')}/${userId}`);
         setMessages(response.data);
       } catch (error) {
         console.error('Error fetching messages:', error);
@@ -66,7 +65,7 @@ const Chat = () => {
     }
 
     try {
-      const response = await axios.post(`http://localhost:8000/chat/${userId}`, formData, {
+      const response = await axios.post(`https://collab-app-backend.onrender.com/chat/${userId}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -91,7 +90,7 @@ const Chat = () => {
             <Comment key={message._id}>
               <Comment.Content>
                 <CommentAvatar
-                  src={`http://localhost:8000/chat${message.fromUser.profileImageURL}`}
+                  src={`https://collab-app-backend.onrender.com/chat${message.fromUser.profileImageURL}`}
                 />
                 <Comment.Author>{message.fromUser.firstName} {message.fromUser.lastName}</Comment.Author>
                 <Comment.Metadata>

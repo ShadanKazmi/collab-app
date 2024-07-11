@@ -44,7 +44,7 @@ const TeamFeed = () => {
 
     const fetchMessages = async () => {
         try {
-            const response = await axios.get(`http://localhost:8000/feed/${teamId}`);
+            const response = await axios.get(`https://collab-app-backend.onrender.com/feed/${teamId}`);
             setComments(response.data);
         } catch (error) {
             console.error('Error fetching messages:', error);
@@ -58,7 +58,7 @@ const TeamFeed = () => {
                 console.error('User ID not found in cookies.');
                 return null;
             }
-            const response = await axios.get(`http://localhost:8000/userAuth/${userId}`);
+            const response = await axios.get(`https://collab-app-backend.onrender.com/userAuth/${userId}`);
             return response.data;
         } catch (error) {
             console.error('Error fetching user:', error);
@@ -86,7 +86,7 @@ const TeamFeed = () => {
             }
 
             try {
-                const response = await axios.post('http://localhost:8000/feed/', formData, {
+                const response = await axios.post('https://collab-app-backend.onrender.com/feed/', formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data',
                     },
@@ -131,7 +131,7 @@ const TeamFeed = () => {
             };
 
             try {
-                const response = await axios.post(`http://localhost:8000/feed/${commentId}/reply`, {
+                const response = await axios.post(`https://collab-app-backend.onrender.com/feed/${commentId}/reply`, {
                     textContent: replyText,
                     userId: userId,
                 });
@@ -188,7 +188,7 @@ const TeamFeed = () => {
                 <CommentGroup threaded size='large'>
                     {comments.map((comment, index) => (
                         <Comment key={comment._id}>
-                            <CommentAvatar as='a' src={`http://localhost:8000/feed${comment.createdBy.profileImageURL}`} />
+                            <CommentAvatar as='a' src={`https://collab-app-backend.onrender.com/feed${comment.createdBy.profileImageURL}`} />
                             <CommentContent>
                                 <CommentAuthor as='a' onClick={() => handleUserClick(comment.createdBy)}>
                                     {comment.createdBy.firstName} {comment.createdBy.lastName}
@@ -203,11 +203,11 @@ const TeamFeed = () => {
                                             icon
                                             labelPosition='left'
                                             onClick={() =>
-                                                handleFileDownload(`http://localhost:8000/feed${comment.uploadContent}`)
+                                                handleFileDownload(`https://collab-app-backend.onrender.com/feed${comment.uploadContent}`)
                                             }
                                         >
                                             <Icon name='file alternate' />
-                                            {`http://localhost:8000/feed${comment.uploadContent}`.split('/').pop()}
+                                            {`https://collab-app-backend.onrender.com/feed${comment.uploadContent}`.split('/').pop()}
                                         </Button>
                                     </CommentText>
                                 )}
@@ -220,7 +220,7 @@ const TeamFeed = () => {
                                             <Comment key={reply._id}>
                                                 <CommentAvatar
                                                     as='a'
-                                                    src={`http://localhost:8000/feed${reply.createdBy.profileImageURL}`}
+                                                    src={`https://collab-app-backend.onrender.com/feed${reply.createdBy.profileImageURL}`}
                                                 />
                                                 <CommentContent>
                                                     <CommentAuthor as='a' onClick={() => handleUserClick(reply.createdBy)}>
