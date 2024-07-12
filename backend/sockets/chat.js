@@ -3,7 +3,7 @@ const { Server } = require('socket.io');
 function initializeChatSocket(server) {
   const chatIo = new Server(server, {
     cors: {
-      origin: 'http://localhost:3000',
+      origin: 'https://one-space-zeta.vercel.app',
       methods: ['GET', 'POST'],
     },
   });
