@@ -30,22 +30,6 @@ const UserProfile = () => {
                                     <p><Icon name='user' /> Gender: {user.gender}</p>
                                 </Card.Description>
                             </Card.Content>
-                            <Card.Content extra>
-                                <div className="flex justify-around mt-4">
-                                    <a href="#" className="text-blue-600 hover:text-blue-800">
-                                        <Icon name='facebook' size='large' />
-                                    </a>
-                                    <a href="#" className="text-blue-500 hover:text-blue-700">
-                                        <Icon name='twitter' size='large' />
-                                    </a>
-                                    <a href="#" className="text-pink-600 hover:text-pink-800">
-                                        <Icon name='instagram' size='large' />
-                                    </a>
-                                    <a href="#" className="text-gray-600 hover:text-gray-800">
-                                        <Icon name='linkedin' size='large' />
-                                    </a>
-                                </div>
-                            </Card.Content>
                         </Grid.Column>
                     </Grid>
                 </Card>

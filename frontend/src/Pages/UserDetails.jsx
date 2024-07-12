@@ -114,7 +114,6 @@ const UserDetails = () => {
             <p><Icon name='mail' /> {userDetails.email}</p>
             <p><Icon name='user' /> Gender: {userDetails.gender}</p>
             <p><Icon name='calendar' /> Joined in {new Date(userDetails.createdAt).getFullYear()}</p>
-            <p><Icon name='users' /> {userDetails.friendsCount} Friends</p>
             <Button onClick={() => setOpen(true)}>Edit Profile</Button>
             <Button color='red' onClick={handleDelete}>Delete Account</Button>
           </Grid.Column>
