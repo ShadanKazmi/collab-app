@@ -26,7 +26,8 @@ router.get('/teamtasks/:teamId', async (req, res) => {
             msgContent: { $in: [null, undefined] } // Filter out tasks with msgContent
         })
         .select('-msgContent') // Exclude msgContent
-        .populate('createdBy', 'firstName lastName');
+        .populate('createdBy', 'firstName lastName')
+        .populate('teamId','teamName');
 
         res.status(200).json({ uploadedContents });
     } catch (error) {
