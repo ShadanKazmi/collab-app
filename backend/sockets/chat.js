@@ -16,7 +16,7 @@ function initializeChatSocket(server) {
     });
 
     socket.on('newChatMessage', (message) => {
-      chatIo.emit('newChatMessage', message); // Broadcast to all clients
+      chatIo.emit('newChatMessage', message);
     });
   });
 

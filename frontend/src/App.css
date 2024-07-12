@@ -7,10 +7,16 @@
     src: url("./Assets/app-font.ttf");
 }
 
-body{
+@layer base {
+    body {
+      @apply bg-gradient-to-r from-slate-900 to-slate-700
+    }
+  }
+
+/* body{
     font-family: 'App-Font';
     background-color: grey;
-}
+} */
 
 /* dark-mode.css */
 body.dark-mode {
