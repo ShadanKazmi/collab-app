@@ -151,6 +151,7 @@ import SearchBar from './SearchBar';
 import { teamContext } from '../api/TeamsContext';
 import Cookies from 'js-cookie';
 import bg from '../Assets/bg.svg';
+import icon from '../Assets/teamicon.jpg';
 
 const Teams = () => {
     const { teams, setTeams } = useContext(teamContext);
@@ -222,7 +223,7 @@ const Teams = () => {
                     teams.map(team => (
                         <Grid.Column key={team._id}>
                             <Card fluid onClick={() => navigateToTeamDetails(team._id)} style={{ cursor: 'pointer', marginBottom: '1.5rem', background:"linear-gradient(to right, #e0eafc, #cfdef3)"}}>
-                                <Image src={'https://react.semantic-ui.com/images/avatar/large/ade.jpg'} size='medium' />
+                                <Image src={icon} size='medium' />
                                 <CardContent>
                                     <CardHeader>{team.teamName}</CardHeader>
                                 </CardContent>
