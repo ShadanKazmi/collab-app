@@ -53,7 +53,7 @@ router.post('/:userId', upload.single('uploadContent'), async (req, res) => {
         });
 
         await chatMessage.save();
-        const populatedChatMessage = await chatMessage.populate('fromUser', 'firstName lastName profileImageURL').execPopulate();
+        const populatedChatMessage = await chatMessage.populate('fromUser', 'firstName lastName profileImageURL')
         // Emit event to clients
         const chatIo = req.app.get('chatIo');
         chatIo.to(toUser).emit('newChatMessage', populatedChatMessage);
