@@ -57,7 +57,12 @@ router.post('/:userId', upload.single('uploadContent'), async (req, res) => {
         // Emit event to clients
         const chatIo = req.app.get('chatIo');
         chatIo.to(toUser).emit('newChatMessage', chatMessage);
+        chatIo.to(toUser).emit('newMessageNotification', {
+            userId: fromUser,
+            textContent: textContent || 'New file received',
+        });
 
+        
         res.status(201).json(chatMessage);
     } catch (error) {
         console.error('Error saving chat message:', error);

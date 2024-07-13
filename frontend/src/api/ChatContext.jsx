@@ -34,6 +34,13 @@ export const MessageProvider = ({ children }) => {
     Cookies.set('chats', JSON.stringify(updatedChats), { expires: 7 }); // Set cookie with 7 days expiration
   };
 
+  const updateChatSubtitle = (userId, newSubtitle) => {
+    setChats(prevChats => prevChats.map(chat =>
+      chat.userId === userId ? { ...chat, messages: [...chat.messages, { textContent: newSubtitle }] } : chat
+    ));
+  };
+
+
   useEffect(() => {
     // Retrieve chats from cookies on component mount
     const storedChats = Cookies.get('chats');

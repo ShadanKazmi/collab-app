@@ -9,75 +9,18 @@
 
 @layer base {
     body {
-      @apply bg-gradient-to-r from-slate-900 to-slate-700
+        @apply bg-gradient-to-r from-slate-900 to-slate-700
     }
-  }
-
-/* body{
-    font-family: 'App-Font';
-    background-color: grey;
-} */
-
-/* dark-mode.css */
-body.dark-mode {
-    background-color: #121212;
-    color: #e0e0e0;
 }
 
-body.dark-mode .bg-white {
-    background-color: #1e1e1e !important;
+.message-left .rce-mbox {
+    @apply bg-blue-300 text-black;
 }
 
-body.dark-mode .text-white {
-    color: #e0e0e0 !important;
+.message-right .rce-mbox {
+    @apply bg-white text-white;
 }
 
-/* Specific adjustments for Semantic UI React components */
-body.dark-mode .ui.menu {
-    background-color: #1e1e1e;
-    color: #e0e0e0;
+.message-right .rce-mbox .rce-mbox-text {
+    @apply text-black;
 }
-
-body.dark-mode .ui.menu .item {
-    color: #e0e0e0;
-}
-
-body.dark-mode .ui.menu .item:hover {
-    background-color: #333333;
-}
-
-body.dark-mode .ui.segment {
-    background-color: #1e1e1e;
-    color: #e0e0e0;
-}
-
-body.dark-mode .ui.header {
-    color: #e0e0e0;
-}
-
-body.dark-mode .ui.dropdown .menu {
-    background-color: #1e1e1e;
-    color: #e0e0e0;
-}
-
-body.dark-mode .ui.dropdown .menu .item:hover {
-    background-color: #333333;
-}
-
-/* Dark mode for other specific elements */
-body.dark-mode .search-bar {
-    background-color: #333333;
-    color: #e0e0e0;
-}
-
-body.dark-mode .search-bar input {
-    background-color: #1e1e1e;
-    color: #e0e0e0;
-    border: 1px solid #333333;
-}
-
-body.dark-mode .icon {
-    color: #e0e0e0;
-}
-
-/* Adjust other components as needed */
