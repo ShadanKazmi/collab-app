@@ -470,7 +470,7 @@ const TeamFeed = () => {
             <Comment.Group threaded size='large'>
                 {comments.map((comment, index) => (
                     <Comment key={comment._id}>
-                        <Comment.Avatar src={`https://collab-app-backend.onrender.com${comment.createdBy.profileImageURL}`} />
+                        <Comment.Avatar src={`https://collab-app-backend.onrender.com/feed${comment.createdBy.profileImageURL}`} />
                         <Comment.Content>
                             <Comment.Author as='a' onClick={() => handleUserClick(comment.createdBy)}>
                                 {comment.createdBy.firstName} {comment.createdBy.lastName}
@@ -485,7 +485,7 @@ const TeamFeed = () => {
                                         icon
                                         labelPosition='left'
                                         onClick={() =>
-                                            handleFileDownload(`https://collab-app-backend.onrender.com${comment.uploadContent}`)
+                                            handleFileDownload(`https://collab-app-backend.onrender.com/feed${comment.uploadContent}`)
                                         }
                                     >
                                         <Icon name='file alternate' />
@@ -501,7 +501,7 @@ const TeamFeed = () => {
                                     {comment.replies.map((reply) => (
                                         <Comment key={reply._id}>
                                             <Comment.Avatar
-                                                src={`https://collab-app-backend.onrender.com${reply.createdBy.profileImageURL}`}
+                                                src={`https://collab-app-backend.onrender.com/feed${reply.createdBy.profileImageURL}`}
                                             />
                                             <Comment.Content>
                                                 <Comment.Author as='a' onClick={() => handleUserClick(reply.createdBy)}>

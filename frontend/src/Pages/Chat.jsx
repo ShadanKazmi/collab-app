@@ -232,9 +232,8 @@ const Chat = () => {
             text: message.textContent,
             date: new Date(message.createdAt),
             title: `${message.fromUser.firstName} ${message.fromUser.lastName}`,
-            ...(message.uploadContent ? { data: { uri: message.uploadContent, status: { click: `https://collab-app-backend.onrender.com${message.uploadContent}` } } } : {}),
+            ...(message.uploadContent ? { data: { uri: message.uploadContent, status: { click: `https://collab-app-backend.onrender.com/chat${message.uploadContent}` } } } : {}),
             className: message.fromUser._id === Cookies.get('userId') ? 'message-right' : 'message-left',
-            avatar: message.fromUser.profileImageURL || <Icon name='user' />,
           }))}
         />
       </div>
