@@ -99,18 +99,18 @@
 
 
 import React, { useState, useEffect, useContext } from 'react';
-import { Icon, Menu, Dropdown } from 'semantic-ui-react';
+import { Icon, Menu, Dropdown, Image } from 'semantic-ui-react';
 import { useNavigate } from 'react-router-dom';
 import SearchBar from './SearchBar';
 import { authContext } from '../api/AuthContext';
 import Cookies from 'js-cookie';
 import axios from 'axios';
+import logo from '../Assets/logo.png'
 
 const NavBar = () => {
     const navigate = useNavigate();
     const { logout, user } = useContext(authContext);
     const [currentUser, setCurrentUser] = useState('');
-    const [isDarkMode, setDarkMode] = useState(false);
 
     useEffect(() => {
         const getCurrentUser = async () => {
@@ -139,17 +139,12 @@ const NavBar = () => {
         navigate('/auth');
     };
 
-    const toggleDarkMode = (checked) => {
-        setDarkMode(checked);
-        document.body.classList.toggle('dark-mode', checked); // Apply dark mode class to the body
-    };
-
     return (
         <div className="flex flex-col" style={{background: "linear-gradient(to left, #304352, #d7d2cc)"}}>
             {/* TOPBAR */}
             <div className="flex items-center justify-between p-4 bg-white text-white h-16 fixed w-full z-10" style={{background: "linear-gradient(to left, #304352, #d7d2cc)"}}>
-                <div className="flex items-center justify-start w-1/3">
-                    <img src="https://react.semantic-ui.com/logo.png" alt="App Logo" className="h-10 w-10" />
+                <div className="flex items-center justify-start">
+                <Icon name='th' size='big'/>
                 </div>
                 <div className="flex items-center justify-center w-1/3">
                     <SearchBar onUserSelect={handleUserSelect} />
@@ -165,7 +160,6 @@ const NavBar = () => {
                     </Dropdown>
                 </div>
             </div>
-            {/* CONTENT */}
             <div className="flex mt-10" >
                 {/* SIDEBAR */}
                 <Menu vertical fixed="left" className="h-full w-56 bg-white" style={{ marginTop: '7.7vh',background: "linear-gradient(to top, #304352, #d7d2cc)" }}>
@@ -181,6 +175,7 @@ const NavBar = () => {
                         <Icon name="chat" />
                         Chat
                     </Menu.Item>
+                    <Image src={logo} style = {{marginTop:"58vh"}} />
                 </Menu>
             </div>
         </div>
