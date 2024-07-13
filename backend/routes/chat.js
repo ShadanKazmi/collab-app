@@ -53,17 +53,17 @@ router.post('/:userId', upload.single('uploadContent'), async (req, res) => {
         });
 
         await chatMessage.save();
-
+        const populatedChatMessage = await chatMessage.populate('fromUser', 'firstName lastName profileImageURL').execPopulate();
         // Emit event to clients
         const chatIo = req.app.get('chatIo');
-        chatIo.to(toUser).emit('newChatMessage', chatMessage);
+        chatIo.to(toUser).emit('newChatMessage', populatedChatMessage);
         chatIo.to(toUser).emit('newMessageNotification', {
             userId: fromUser,
             textContent: textContent || 'New file received',
         });
 
         
-        res.status(201).json(chatMessage);
+        res.status(201).json(populatedChatMessage);
     } catch (error) {
         console.error('Error saving chat message:', error);
         res.status(500).json({ error: 'Server error' });

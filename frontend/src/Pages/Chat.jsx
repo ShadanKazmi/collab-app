@@ -1,9 +1,11 @@
 // import React, { useState, useEffect } from 'react';
-// import { Button, Form, Comment, Icon, Divider, Segment } from 'semantic-ui-react';
+// import { Form, Button, Icon, Divider, Segment } from 'semantic-ui-react';
 // import { useParams } from 'react-router-dom';
 // import axios from 'axios';
 // import io from 'socket.io-client';
 // import Cookies from 'js-cookie';
+// import { MessageBox, MessageList, Input, Button as ChatButton } from 'react-chat-elements';
+// import 'react-chat-elements/dist/main.css';
 
 // const socket = io('https://collab-app-backend.onrender.com');
 
@@ -81,66 +83,56 @@
 //   };
 
 //   return (
-//     <Segment style={{ maxWidth: '100%', minHeight: '90vh', margin: '30px', marginTop: '2rem', position: 'relative', borderBottom:"20px solid transparent"}}>
+//     <Segment style={{ maxWidth: '100%', minHeight: '90vh', margin: '30px', marginTop: '2rem', position: 'relative', borderBottom: "20px solid transparent", backgroundColor: '#f4f4f4' }}>
 //       <Divider horizontal>Chat</Divider>
-//       <Comment.Group threaded style={{ marginBottom: '80px', overflowY: 'auto', maxHeight: 'calc(85vh - 200px)' }}>
-//         {messages.map((message) => (
-//           <Comment key={message._id}>
-//             <Comment.Avatar src={`https://collab-app-backend.onrender.com/chat${message.fromUser.profileImageURL}`} />
-//             <Comment.Content>
-//               <Comment.Author>{message.fromUser.firstName} {message.fromUser.lastName}</Comment.Author>
-//               <Comment.Metadata>{new Date(message.createdAt).toLocaleString()}</Comment.Metadata>
-//               <Comment.Text>{message.textContent}</Comment.Text>
-//               {message.uploadContent && (
-//                 <Comment.Action>
-//                   <Button icon labelPosition='left' as='a' href={message.uploadContent} target='_blank' rel='noopener noreferrer'>
-//                     <Icon name='file alternate' />
-//                     {message.uploadContent.split('/').pop()}
-//                   </Button>
-//                 </Comment.Action>
-//               )}
-//             </Comment.Content>
-//           </Comment>
-//         ))}
-//       </Comment.Group>
+//       <div style={{ marginBottom: '80px', overflowY: 'auto', maxHeight: 'calc(85vh - 200px)' }}>
+//         <MessageList
+//           className='message-list'
+//           lockable={true}
+//           toBottomHeight={'100%'}
+//           dataSource={messages.map((message) => ({
+//             position: message.fromUser._id === Cookies.get('userId') ? 'right' : 'left',
+//             type: 'text',
+//             text: message.textContent,
+//             date: new Date(message.createdAt),
+//             title: `${message.fromUser.firstName} ${message.fromUser.lastName}`,
+//             ...(message.uploadContent ? { data: { uri: message.uploadContent, status: { click: 'https://collab-app-backend.onrender.com/chat${message.uploadContent}' } } } : {}),
+//             className: message.fromUser._id === Cookies.get('userId') ? 'message-right' : 'message-left',
+//           }))}
+//         />
+//       </div>
 
-//       <div style={{ position: 'absolute', bottom: '0', left: '0', width: '100%' }}>
-//         <Form reply>
-//           <Form.TextArea
-//             value={newMessage}
-//             onChange={(e) => setNewMessage(e.target.value)}
-//             placeholder='Type your message...'
-//           />
-//           <Button
-//             content='Send'
-//             labelPosition='left'
-//             icon='send'
-//             primary
-//             onClick={handleSendMessage}
-//             style={{ marginTop: '10px' }}
-//           />
-//           <Button
-//             as='label'
-//             content='Upload File'
-//             labelPosition='left'
-//             style={{ marginTop: '10px', marginLeft: '10px' }}
-//           >
-//             <Icon name='upload'/>
-//             <input type='file' hidden onChange={handleFileChange} />
-//           </Button>
-//           {filePreview && (
-//             <div style={{ marginTop: '10px', maxWidth: '200px' }}>
-//               <img src={filePreview} alt='File Preview' style={{ maxWidth: '100%', maxHeight: '200px' }} />
+//       <div style={{ position: 'absolute', bottom: '0', left: '0', width: '100%', padding: '10px', backgroundColor: '#fff' }}>
+//         <Input
+//           placeholder="Type your message..."
+//           multiline={true}
+//           value={newMessage}
+//           onChange={(e) => setNewMessage(e.target.value)}
+//           rightButtons={
+//             <div>
+//               <ChatButton color='white' backgroundColor='#007bff' text='Send' onClick={handleSendMessage} />
+//               <Button
+//                 as='label'
+//                 icon
+//                 style={{ marginLeft: '10px', backgroundColor: '#007bff', color: '#fff' }}
+//               >
+//                 <Icon name='upload' />
+//                 <input type='file' hidden onChange={handleFileChange} />
+//               </Button>
+//               {filePreview && (
+//                 <div style={{ marginTop: '10px', maxWidth: '200px' }}>
+//                   <img src={filePreview} alt='File Preview' style={{ maxWidth: '100%', maxHeight: '200px' }} />
+//                 </div>
+//               )}
 //             </div>
-//           )}
-//         </Form>
+//           }
+//         />
 //       </div>
 //     </Segment>
 //   );
 // };
 
 // export default Chat;
-
 
 import React, { useState, useEffect } from 'react';
 import { Form, Button, Icon, Divider, Segment } from 'semantic-ui-react';
@@ -227,11 +219,11 @@ const Chat = () => {
   };
 
   return (
-    <Segment style={{ maxWidth: '100%', minHeight: '90vh', margin: '30px', marginTop: '2rem', position: 'relative', borderBottom: "20px solid transparent", backgroundColor: '#f4f4f4' }}>
+    <Segment className="bg-gray-100 p-6 rounded-lg shadow-lg" style={{ maxWidth: '100%', minHeight: '90vh', margin: '30px', marginTop: '2rem', position: 'relative' }}>
       <Divider horizontal>Chat</Divider>
-      <div style={{ marginBottom: '80px', overflowY: 'auto', maxHeight: 'calc(85vh - 200px)' }}>
+      <div className="overflow-y-auto max-h-96 mb-8">
         <MessageList
-          className='message-list'
+          className="message-list"
           lockable={true}
           toBottomHeight={'100%'}
           dataSource={messages.map((message) => ({
@@ -240,32 +232,33 @@ const Chat = () => {
             text: message.textContent,
             date: new Date(message.createdAt),
             title: `${message.fromUser.firstName} ${message.fromUser.lastName}`,
-            ...(message.uploadContent ? { data: { uri: message.uploadContent, status: { click: 'https://collab-app-backend.onrender.com/chat${message.uploadContent}' } } } : {}),
+            ...(message.uploadContent ? { data: { uri: message.uploadContent, status: { click: `https://collab-app-backend.onrender.com${message.uploadContent}` } } } : {}),
             className: message.fromUser._id === Cookies.get('userId') ? 'message-right' : 'message-left',
+            avatar: message.fromUser.profileImageURL || <Icon name='user' />,
           }))}
         />
       </div>
 
-      <div style={{ position: 'absolute', bottom: '0', left: '0', width: '100%', padding: '10px', backgroundColor: '#fff' }}>
+      <div className="absolute bottom-0 left-0 w-full p-4 bg-white">
         <Input
           placeholder="Type your message..."
           multiline={true}
           value={newMessage}
           onChange={(e) => setNewMessage(e.target.value)}
           rightButtons={
-            <div>
+            <div className="flex items-center">
               <ChatButton color='white' backgroundColor='#007bff' text='Send' onClick={handleSendMessage} />
               <Button
                 as='label'
                 icon
-                style={{ marginLeft: '10px', backgroundColor: '#007bff', color: '#fff' }}
+                className="ml-2 bg-blue-500 text-white"
               >
                 <Icon name='upload' />
                 <input type='file' hidden onChange={handleFileChange} />
               </Button>
               {filePreview && (
-                <div style={{ marginTop: '10px', maxWidth: '200px' }}>
-                  <img src={filePreview} alt='File Preview' style={{ maxWidth: '100%', maxHeight: '200px' }} />
+                <div className="mt-2 max-w-xs">
+                  <img src={filePreview} alt='File Preview' className="max-w-full max-h-52" />
                 </div>
               )}
             </div>
