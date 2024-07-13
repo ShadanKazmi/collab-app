@@ -59,7 +59,8 @@ const AuthPage = () => {
         profileImageURL: response.data.profileImageURL,
       };
       
-      login(response.data.token, userData);
+      // login(response.data.token, userData);
+      setUserState("Logged-In")
     } catch (error) {
       console.error('Error signing up:', error);
       setError('Error signing up. Please try again.');
